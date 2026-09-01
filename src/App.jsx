@@ -15,7 +15,7 @@ import { Button } from "./components/Button"
 import { TodoForm } from "./components/TodoForm"
 import TodoContext from "./components/TodoProvider/TodoContext"
 import { TodoGroup } from "./components/TodoGroup"
-import { EmpyState } from "./components/EmptyState"
+import { EmptyState } from "./components/EmptyState"
 
 
 function App() {
