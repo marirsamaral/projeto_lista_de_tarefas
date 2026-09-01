@@ -9,7 +9,8 @@ export function TodoForm ({onSubmit, defaultValue}) {
             <TextInput placeholder="Digite o item que deseja adicionar" 
             required
             name="description"
-            defaultValue={defaultValue}/>
+            defaultValue={defaultValue}
+            />
             <Button>
                 Salvar Item
             </Button>

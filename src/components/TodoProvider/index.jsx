@@ -11,14 +11,16 @@ export function TodoProvider({ children }) {
     const [showDialog, setShowDialog] = useState(false)
     const [selectedTodo, setSelectedTodo] = useState(null)
 
-    const openFormTodoDialog = () => {
-        if (todos) {
-    setShowDialog (true)
+    const openFormTodoDialog = (todo) => {
+        if (todo) {
+            setSelectedTodo(todo)
+        }
+        setShowDialog (true)
     }
 
     const closeFormTodoDialog = () => {
-    setShowDialog (false)
-    setSelectedTodo(null)
+        setShowDialog (false)
+        setSelectedTodo(null)
     }
 
     useEffect(() => {
@@ -52,6 +54,20 @@ export function TodoProvider({ children }) {
         })
     }
 
+        const editTodo = (formData) => {
+        setTodos(prevState => {
+            return prevState.map(t => {
+                if (t.id == selectedTodo.id) {
+                    return {
+                        ...t,
+                        description: formData.get('description')
+                    }
+                }
+                return t
+            })
+        })
+    }
+
     const removeTodo = (todo) => {
         setTodos(prevState => {
             return prevState.filter(t => t.id !== todo.id)
@@ -70,7 +86,8 @@ export function TodoProvider({ children }) {
                 showDialog,
                 openFormTodoDialog,
                 closeFormTodoDialog,
-                selectedTodo
+                selectedTodo,
+                editTodo
             }}
         >
             {children}
